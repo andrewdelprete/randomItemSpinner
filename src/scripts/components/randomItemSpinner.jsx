@@ -13,8 +13,6 @@ class RandomItemSpinner extends React.Component {
         };
 
         this.settings = assign({}, this.defaults, this.props.options);
-
-        this.randomItem = null;
     }
 
     /**
