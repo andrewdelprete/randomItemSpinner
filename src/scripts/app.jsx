@@ -14,6 +14,11 @@ var frameworks = [
     { name: 'YUI', img: 'imgs/yuijs.png' }
 ];
 
+/**
+ * Preload images asynchronously
+ * @param  { Array } imageArray
+ * @param  { Int } index
+ */
 function preload(imageArray, index) {
     index = index || 0;
     if (imageArray && imageArray.length > index) {
@@ -21,12 +26,12 @@ function preload(imageArray, index) {
         img.onload = function() {
             preload(imageArray, index + 1);
         };
-        img.src = imageArray[index]['img'];
+        img.src = imageArray[index].img;
     } else {
-        run();
+        runFrameworkSpinner();
     }
 }
-/* images is an array with image metadata */
+
 preload(frameworks);
 
 /**
@@ -41,6 +46,6 @@ var FrameworkItem = function() {
     );
 };
 
-var run = function() {
+var runFrameworkSpinner = function() {
     React.render(<RandomItemSpinner element={ document.getElementById('app') } items={ frameworks } renderComponent={ FrameworkItem } />, document.getElementById('app'));
 };
