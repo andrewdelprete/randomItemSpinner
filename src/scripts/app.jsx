@@ -14,6 +14,21 @@ var frameworks = [
     { name: 'YUI', img: 'imgs/yuijs.png' }
 ];
 
+function preload(imageArray, index) {
+    index = index || 0;
+    if (imageArray && imageArray.length > index) {
+        var img = new Image();
+        img.onload = function() {
+            preload(imageArray, index + 1);
+        };
+        img.src = imageArray[index]['img'];
+    } else {
+        run();
+    }
+}
+/* images is an array with image metadata */
+preload(frameworks);
+
 /**
  * The JSX we're going to render on each iteration.
  * @return { JSX }
@@ -26,4 +41,6 @@ var FrameworkItem = function() {
     );
 };
 
-React.render(<RandomItemSpinner element={ document.getElementById('app') } items={ frameworks } renderComponent={ FrameworkItem } />, document.getElementById('app'));
+var run = function() {
+    React.render(<RandomItemSpinner element={ document.getElementById('app') } items={ frameworks } renderComponent={ FrameworkItem } />, document.getElementById('app'));
+};

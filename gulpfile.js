@@ -12,6 +12,8 @@ var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var streamify = require('gulp-streamify');
+var subtree = require('gulp-subtree');
+var clean = require('gulp-clean');
 
 gulp.task('browser-sync', ['build'], function() {
   browserSync({
@@ -90,6 +92,18 @@ gulp.task('browserify', ['lint'], function () {
     .pipe(streamify(uglify()))
     .pipe(gulp.dest('dist/scripts/'))
     .pipe(browserSync.reload({stream:true}))
+});
+
+// Deploy to GH pages
+gulp.task('temp', ['build'], function() {
+    return gulp.src('./dist/**/*')
+        .pipe(gulp.dest('./build'));
+});
+
+gulp.task('deploy', ['temp'], function() {
+    return gulp.src('./build')
+        .pipe(subtree())
+        .pipe(clean());
 });
 
 gulp.task('build', ['styles', 'browserify', 'img', 'mp3', 'html']);
