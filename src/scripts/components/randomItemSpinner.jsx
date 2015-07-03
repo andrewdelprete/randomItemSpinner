@@ -13,6 +13,7 @@ class RandomItemSpinner extends React.Component {
         };
 
         this.settings = assign({}, this.defaults, this.props.options);
+
         this.randomItem = null;
     }
 
@@ -66,7 +67,7 @@ class RandomItemSpinner extends React.Component {
             let index = 0;
             for (let item of spinnerArray) {
                 item.currentStep = index++;
-                setTimeout(onChange, this.delayAlgorithm(item.currentStep, this.settings.iterations, this.settings.delay));
+                setTimeout(onChange.bind(this, this.props.onChangeCallback), this.delayAlgorithm(item.currentStep, this.settings.iterations, this.settings.delay));
                 yield item;
             }
         }
@@ -79,14 +80,15 @@ class RandomItemSpinner extends React.Component {
         /**
          * onChange iterator
          */
-        var onChange = () => {
+        var onChange = (callback) => {
             let item = it.next();
 
             if (item.value) {
-                let audio = new Audio('mp3s/click.mp3');
-                audio.play();
-
-                React.render(<RandomItemSpinner element={ this.props.element } items={ this.props.items } options={ this.props.options } randomItem={ item } renderComponent={ this.props.renderComponent } />, this.props.element);
+                if (callback) {
+                    callback();
+                }
+                
+                React.render(<RandomItemSpinner element={ this.props.element } items={ this.props.items } onChangeCallback={ this.props.onChangeCallback } options={ this.props.options } randomItem={ item } renderComponent={ this.props.renderComponent } />, this.props.element);
             }
         };
 
@@ -154,6 +156,7 @@ RandomItemSpinner.defaultProps = {
     element: {},
     items: [],
     options: {},
+    onChangeCallback: function() {},
     randomItem: { value: { name: '', img: '', steps: 0 } },
     renderComponent: function() {}
 };
