@@ -85,9 +85,9 @@ class RandomItemSpinner extends React.Component {
 
             if (item.value) {
                 if (callback) {
-                    callback();
+                    callback.call(this);
                 }
-                
+
                 React.render(<RandomItemSpinner element={ this.props.element } items={ this.props.items } onChangeCallback={ this.props.onChangeCallback } options={ this.props.options } randomItem={ item } renderComponent={ this.props.renderComponent } />, this.props.element);
             }
         };
