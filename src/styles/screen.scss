@@ -1,0 +1,119 @@
+
+@import 'base/variables';
+
+@import '../../bower_components/beard/beard';
+
+html, body {
+    background: radial-gradient(ellipse at center,  #ffffff 0%,#feecd7 100%,#feecd7 100%); /* W3C */
+    font-family: "Avenir Next";
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+a {
+    color: #000;
+    transition: all .3s linear;
+}
+a:hover { color: #ffc079 }
+
+.fork-me {
+    display: none;
+
+    @include media($md) {
+        display: block;
+        z-index: 10;
+        width: 149px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: 0;
+    }
+}
+
+.FrameworkItem__img {
+    width: 70vw;
+    height: auto;
+    @include media($md) {
+        width: 20vw;
+    }
+}
+
+.main-footer {
+    font-size: 1.5rem;
+    position: absolute;
+    bottom: 0;
+    letter-spacing: .1rem;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.title {
+    position: absolute;
+    top: 3rem;
+    text-align: center;
+    padding: 0 5%;
+    width: 100%;
+
+    @include media($md) {
+        top: 5rem;
+    }
+
+    .title__main {
+        text-transform: uppercase;
+        letter-spacing: .75rem;
+        font-size: 2rem;
+        font-weight: 500;
+
+        @include media($md) {
+            font-size: 6rem;
+            font-weight: 200;
+        }
+    }
+
+    .title__sub {
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        letter-spacing: .25rem;
+
+        @include media($md) {
+            letter-spacing: .5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+    }
+}
+
+.wrap {
+    position: relative;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden
+}
+
+// Added Helpers
+// =============================================================================
+
+.pv05 {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.ph05 {
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
+.asfe {
+    align-self: flex-end;
+}
+
+.asc {
+    align-self: center;
+}
+
+.tcb {
+    color: $black;
+}
