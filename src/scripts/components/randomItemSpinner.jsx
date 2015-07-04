@@ -1,5 +1,4 @@
 import React from 'react';
-import assign from 'lodash.assign';
 
 /**
  * RandomItemSpinner Component
@@ -7,19 +6,13 @@ import assign from 'lodash.assign';
 class RandomItemSpinner extends React.Component {
     constructor(props) {
         super(props);
-        this.defaults = {
-            delay: 120,
-            iterations: 60
-        };
-
-        this.settings = assign({}, this.defaults, this.props.options);
     }
 
     /**
      * Run after component mounts the donkey
      */
     componentDidMount() {
-        this.init(this.settings.delay);
+        this.init(this.props.options.delay);
     }
 
     /**
@@ -65,7 +58,7 @@ class RandomItemSpinner extends React.Component {
             let index = 0;
             for (let item of spinnerArray) {
                 item.currentStep = index++;
-                setTimeout(onChange.bind(this, this.props.onChangeCallback), this.delayAlgorithm(item.currentStep, this.settings.iterations, this.settings.delay));
+                setTimeout(onChange.bind(this, this.props.onChangeCallback), this.delayAlgorithm(item.currentStep, this.props.options.iterations, this.props.options.delay));
                 yield item;
             }
         }
@@ -114,7 +107,7 @@ class RandomItemSpinner extends React.Component {
     }
 
     /**
-     * Removes duplicate sibblings tha are adjacent to one another in an Array
+     * Removes duplicate sibblings that are adjacent to one another in an Array
      * @param  { Array } spinnerList
      * @return { Array }
      */
@@ -128,22 +121,22 @@ class RandomItemSpinner extends React.Component {
 
     /**
      * Initialize - Render and start spinner
-     * @param  {int} delay
+     * @param  { Int } delay
      *
      * @TODO - Clean this up to chain somehow
      */
     init() {
-        let spinnerList = this.iterationsSpinnerList(this.settings.iterations / this.props.items.length, this.props.items);
+        let spinnerList = this.iterationsSpinnerList(this.props.options.iterations / this.props.items.length, this.props.items);
             spinnerList = this.randomizeSpinnerArray(spinnerList);
             spinnerList = this.dedupeSiblings(spinnerList);
 
 
-        this.spinner(this.settings.delay, spinnerList);
+        this.spinner(this.props.options.delay, spinnerList);
     }
 
     /**
      * Render bender
-     * @return { jsx }
+     * @return { JSX }
      */
     render() {
         return this.props.renderComponent();
@@ -153,12 +146,22 @@ class RandomItemSpinner extends React.Component {
 RandomItemSpinner.defaultProps = {
     element: {},
     items: [],
-    options: {},
+    options: {
+        delay: 120,
+        iterations: 60
+    },
     onChangeCallback: function() {},
     randomItem: { value: { name: '', img: '', steps: 0 } },
     renderComponent: function() {}
 };
 
 RandomItemSpinner.displayName = 'RandomItemSpinner';
-
+RandomItemSpinner.propTypes = {
+    element: React.PropTypes.object.isRequired,
+    items: React.PropTypes.array.isRequired,
+    onChangeCallback: React.PropTypes.func,
+    options: React.PropTypes.object,
+    randomItem: React.PropTypes.object,
+    renderComponent: React.PropTypes.func.isRequired
+};
 export default { RandomItemSpinner };
