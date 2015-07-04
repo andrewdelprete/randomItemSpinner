@@ -144,15 +144,11 @@ class RandomItemSpinner extends React.Component {
 }
 
 RandomItemSpinner.defaultProps = {
-    element: {},
-    items: [],
     options: {
         delay: 120,
         iterations: 60
     },
-    onChangeCallback: function() {},
-    randomItem: { value: { name: '', img: '', steps: 0 } },
-    renderComponent: function() {}
+    randomItem: { value: { name: '', img: '', steps: 0 } }
 };
 
 RandomItemSpinner.displayName = 'RandomItemSpinner';
