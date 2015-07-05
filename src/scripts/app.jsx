@@ -35,17 +35,6 @@ function preload(imageArray, index) {
 preload(frameworks);
 
 /**
- * Play sound
- */
-function playClick() {
-    var isSafari = (navigator.userAgent.indexOf('Safari') !== -1 && navigator.userAgent.indexOf('Chrome') === -1);
-    if (!isSafari) {
-        let audio = new Audio('mp3s/click.mp3');
-        audio.play();
-    }
-}
-
-/**
  * The JSX we're going to render on each iteration.
  * @return { JSX }
  */
@@ -57,6 +46,43 @@ var FrameworkItem = function() {
     );
 };
 
-var runFrameworkSpinner = function() {
-    React.render(<RandomItemSpinner element={ document.getElementById('app') } items={ frameworks } onChangeCallback={ playClick } renderComponent={ FrameworkItem } />, document.getElementById('app'));
+/**
+ * The Spin Again Button
+ */
+var spin = document.getElementById('spin');
+
+/**
+ * Enable Spin Button
+ */
+function enableSpinButton() {
+    spin.removeAttribute('disabled');
+}
+
+/**
+ * Disable Spin Button
+ */
+function disableSpinButton() {
+    spin.setAttribute('disabled', 'disabled');
+}
+
+/**
+ * Play click sound and disable spin button
+ */
+function playClickAndDisableSpinButton() {
+    disableSpinButton();
+
+    var isSafari = (navigator.userAgent.indexOf('Safari') !== -1 && navigator.userAgent.indexOf('Chrome') === -1);
+    if (!isSafari) {
+        let audio = new Audio('mp3s/click.mp3');
+        audio.play();
+    }
+}
+
+var runFrameworkSpinner = function(reInit) {
+    React.render(<RandomItemSpinner element={ document.getElementById('app') } items={ frameworks } onChangeCallback={ playClickAndDisableSpinButton } onChangeEndCallback={ enableSpinButton } reInit={ reInit } renderJSX={ FrameworkItem } />, document.getElementById('app'));
 };
+
+/**
+ * Attach Event Listener to Spin button and re run spinner
+ */
+spin.addEventListener('click', runFrameworkSpinner.bind(null, true), false);

@@ -18,6 +18,22 @@ a {
 }
 a:hover { color: #ffc079 }
 
+.play-button {
+    @extend .bgsuccess;
+
+    color: white;
+    border-radius:50%;
+    padding-left: 7px;
+    width: 40px;
+    height: 40px;
+    transition: all .3s linear;
+}
+
+.play-button:disabled {
+    background: #efefef;
+    color: #ddd;
+}
+
 .fork-me {
     display: none;
 
@@ -84,6 +100,17 @@ a:hover { color: #ffc079 }
             font-weight: 700;
         }
     }
+}
+
+.spin-again {
+    font-size: 1.5rem;
+    position: absolute;
+    bottom: 9rem;
+    letter-spacing: .1rem;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+    z-index: 10;
 }
 
 .wrap {
