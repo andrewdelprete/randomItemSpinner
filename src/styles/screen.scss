@@ -3,6 +3,9 @@
 
 @import '../../bower_components/beard/beard';
 
+/**
+ *  Elements
+ */
 html, body {
     background: radial-gradient(ellipse at center,  #ffffff 0%,#feecd7 100%,#feecd7 100%); /* W3C */
     font-family: "Avenir Next";
@@ -16,9 +19,34 @@ a {
     color: #000;
     transition: all .3s linear;
 }
+
 a:hover { color: #ffc079 }
 
-.play-button {
+/**
+ * Components
+ */
+
+ .RandomItem__img {
+     width: 70vw;
+     height: auto;
+     @include media($md) {
+         width: 20vw;
+     }
+ }
+
+ .SpinAgain {
+     font-size: 1.5rem;
+     position: absolute;
+     left: 0;
+     bottom: 9rem;
+     letter-spacing: .1rem;
+     text-align: center;
+     text-transform: uppercase;
+     width: 100%;
+     z-index: 10;
+ }
+
+.SpinAgain__button {
     @extend .bgsuccess;
 
     color: white;
@@ -29,11 +57,14 @@ a:hover { color: #ffc079 }
     transition: all .3s linear;
 }
 
-.play-button:disabled {
+.SpinAgain__button:disabled {
     background: #efefef;
     color: #ddd;
 }
 
+/**
+ * Classes
+ */
 .fork-me {
     display: none;
 
@@ -45,14 +76,6 @@ a:hover { color: #ffc079 }
         top: 0;
         right: 0;
         border: 0;
-    }
-}
-
-.FrameworkItem__img {
-    width: 70vw;
-    height: auto;
-    @include media($md) {
-        width: 20vw;
     }
 }
 
@@ -100,17 +123,6 @@ a:hover { color: #ffc079 }
             font-weight: 700;
         }
     }
-}
-
-.spin-again {
-    font-size: 1.5rem;
-    position: absolute;
-    bottom: 9rem;
-    letter-spacing: .1rem;
-    text-align: center;
-    text-transform: uppercase;
-    width: 100%;
-    z-index: 10;
 }
 
 .wrap {
