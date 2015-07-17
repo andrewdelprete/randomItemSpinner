@@ -5,15 +5,14 @@ import React from 'react';
  */
 class RandomItemSpinner extends React.Component {
     componentWillMount() {
-        this.start(this.props.options.delay, this.buildPool());
+        this.start(this.buildPool());
     }
 
     /**
      * Spinner loops through an array with a specified delay and renders a react component
-     * @param  { Int } delay
      * @param  { Array } items
      */
-    start(delay, items) {
+    start(items) {
 
         /**
          * Our generator
@@ -128,7 +127,7 @@ class RandomItemSpinner extends React.Component {
      * Event Handler to respin
      */
     spinAgainHandler() {
-        this.start(this.props.options.delay, this.buildPool());
+        this.start(this.buildPool());
     }
 
     /**
