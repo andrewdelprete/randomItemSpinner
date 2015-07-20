@@ -9,7 +9,7 @@ class RandomItemSpinner extends React.Component {
     }
 
     /**
-     * Spinner loops through an array with a specified delay and renders a react component
+     * Spinner loops through an array of items and uses a generator to yield each item at a specified delay
      * @param  { Array } items
      */
     start(items) {

@@ -1,33 +1,44 @@
 {
-  "name": "randomItemSpinner",
-  "version": "1.0.0",
-  "description": "A ReactJS Component that takes an array of items and loops through them randomly and selects one.",
-  "main": "gulpfile.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Andrew Del Prete",
-  "license": "MIT",
-  "devDependencies": {
-    "babel-eslint": "^3.1.19",
-    "babelify": "^6.0.2",
-    "browser-sync": "2.6.5",
-    "browserify": "^10.1.3",
-    "eslint-plugin-react": "^2.6.3",
-    "gulp": "3.8.11",
-    "gulp-autoprefixer": "2.1.0",
-    "gulp-babel": "5.1.0",
-    "gulp-clean": "^0.3.1",
-    "gulp-concat": "2.5.2",
-    "gulp-eslint": "^0.11.1",
-    "gulp-minify-css": "1.0.0",
-    "gulp-plumber": "1.0.0",
-    "gulp-rename": "1.2.2",
-    "gulp-sass": "1.3.3",
-    "gulp-streamify": "0.0.5",
-    "gulp-subtree": "^0.1.0",
-    "gulp-uglify": "1.2.0",
-    "react": "^0.13.3",
-    "vinyl-source-stream": "^1.1.0"
-  }
+    "name": "randomItemSpinner",
+    "version": "1.0.0",
+    "description": "A ReactJS Component that takes an array of items and loops through them randomly and selects one.",
+    "main": "gulpfile.js",
+    "author": "Andrew Del Prete",
+    "license": "MIT",
+    "scripts": {
+        "test": "jest"
+    },
+    "jest": {
+        "scriptPreprocessor": "./node_modules/babel-jest",
+        "testFileExtensions": ["es6", "js", "jsx"],
+        "moduleFileExtensions": ["js", "json", "es6", "jsx"],
+        "unmockedModulePathPatterns": ["./node_modules/react"]
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "babel-eslint": "^3.1.23",
+        "babel-jest": "^5.3.0",
+        "babelify": "^6.0.2",
+        "browser-sync": "2.6.5",
+        "browserify": "^10.1.3",
+        "eslint": "^0.24.1",
+        "eslint-plugin-react": "^2.7.0",
+        "gulp": "3.8.11",
+        "gulp-autoprefixer": "2.1.0",
+        "gulp-babel": "5.1.0",
+        "gulp-clean": "^0.3.1",
+        "gulp-concat": "2.5.2",
+        "gulp-eslint": "^0.11.1",
+        "gulp-minify-css": "1.0.0",
+        "gulp-plumber": "1.0.0",
+        "gulp-rename": "1.2.2",
+        "gulp-sass": "1.3.3",
+        "gulp-streamify": "0.0.5",
+        "gulp-subtree": "^0.1.0",
+        "gulp-uglify": "1.2.0",
+        "jest-cli": "^0.4.15",
+        "react": "^0.13.3",
+        "react-tools": "^0.13.3",
+        "vinyl-source-stream": "^1.1.0"
+    }
 }
